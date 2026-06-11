@@ -1,0 +1,311 @@
+/* ── Reset & base ── */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: #ffffff;
+    color: #111111;
+    padding: 2.5rem 1.5rem;
+    min-height: 100vh;
+}
+
+/* ── Layout wrapper ── */
+.quiz-wrap {
+    max-width: 660px;
+    margin: 0 auto;
+}
+
+/* ── Header ── */
+.quiz-label {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #c0392b;
+    margin-bottom: 6px;
+}
+
+.quiz-title {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 38px;
+    font-weight: 700;
+    color: #111111;
+    line-height: 1.1;
+    margin-bottom: 1.75rem;
+}
+
+/* ── Progress row ── */
+.meta-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+}
+
+#question-counter {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    color: #444444;
+}
+
+#progress-bar {
+    display: flex;
+    gap: 5px;
+}
+
+.prog-seg {
+    height: 4px;
+    width: 54px;
+    border-radius: 2px;
+    background: #e0e0e0;
+    transition: background 0.3s ease;
+}
+
+.prog-seg.active,
+.prog-seg.done {
+    background: #c0392b;
+}
+
+/* ── Question card ── */
+#question-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    padding: 1.75rem 2rem;
+    background: #ffffff;
+    margin-bottom: 0;
+}
+
+#question-text {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 19px;
+    font-weight: 700;
+    color: #111111;
+    line-height: 1.4;
+    margin-bottom: 1.5rem;
+}
+
+/* ── Option buttons ── */
+.option-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 13px 16px;
+    margin-bottom: 10px;
+    background: #ffffff;
+    border: 1px solid #d0d0d0;
+    border-radius: 3px;
+    cursor: pointer;
+    text-align: left;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    color: #111111;
+    transition: border-color 0.15s, background 0.15s;
+}
+
+.option-btn:last-of-type {
+    margin-bottom: 0;
+}
+
+.option-btn:hover:not(.disabled) {
+    border-color: #999999;
+    background: #f9f9f9;
+}
+
+.opt-letter {
+    font-size: 12px;
+    font-weight: 600;
+    color: #888888;
+    min-width: 18px;
+    flex-shrink: 0;
+}
+
+.opt-text {
+    color: #111111;
+}
+
+/* ── Answer states ── */
+.option-btn.correct {
+    border-color: #27ae60;
+    background: #f0faf4;
+}
+
+.option-btn.correct .opt-letter,
+.option-btn.correct .opt-text {
+    color: #1a7a42;
+}
+
+.option-btn.wrong {
+    border-color: #c0392b;
+    background: #fdf3f3;
+}
+
+.option-btn.wrong .opt-letter,
+.option-btn.wrong .opt-text {
+    color: #c0392b;
+}
+
+.option-btn.disabled {
+    pointer-events: none;
+}
+
+/* ── Feedback box (bordered, left-accent style) ── */
+.feedback-box {
+    margin-top: 16px;
+    padding: 14px 16px;
+    border-radius: 3px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    line-height: 1.55;
+    border-left: 4px solid transparent;
+}
+
+.feedback-box.feedback-wrong {
+    background: #fdf3f3;
+    border-left-color: #c0392b;
+    color: #333333;
+}
+
+.feedback-box.feedback-wrong #feedback-label {
+    font-weight: 700;
+    color: #c0392b;
+    margin-bottom: 3px;
+}
+
+.feedback-box.feedback-correct {
+    background: #f0faf4;
+    border-left-color: #27ae60;
+    color: #333333;
+}
+
+.feedback-box.feedback-correct #feedback-label {
+    font-weight: 700;
+    color: #1a7a42;
+    margin-bottom: 3px;
+}
+
+#feedback-label {
+    display: block;
+    margin-bottom: 3px;
+}
+
+#feedback-body {
+    display: block;
+    color: #333333;
+}
+
+/* ── Next button — full width, black ── */
+#next-btn {
+    display: none;
+    width: 100%;
+    margin-top: 0;
+    padding: 16px 26px;
+    background: #111111;
+    color: #ffffff;
+    border: none;
+    border-radius: 0 0 4px 4px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.15s;
+    letter-spacing: 0.02em;
+}
+
+#next-btn:hover {
+    background: #333333;
+}
+
+/* ── Result card ── */
+#result-card {
+    display: none;
+}
+
+.result-inner {
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    padding: 3rem 2rem;
+    background: #ffffff;
+    text-align: center;
+}
+
+#score-big {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 64px;
+    font-weight: 700;
+    color: #c0392b;
+    line-height: 1;
+    margin-bottom: 0.75rem;
+}
+
+#result-headline {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #111111;
+    margin-bottom: 0.5rem;
+}
+
+#final-score {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color: #666666;
+    margin-bottom: 2rem;
+}
+
+#retry-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 28px;
+    background: #ffffff;
+    color: #111111;
+    border: 1px solid #d0d0d0;
+    border-radius: 3px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+}
+
+#retry-btn:hover {
+    border-color: #999999;
+    background: #f9f9f9;
+}
+
+/* ── Responsive ── */
+@media (max-width: 520px) {
+    body {
+        padding: 1.5rem 1rem;
+    }
+
+    .quiz-title {
+        font-size: 26px;
+    }
+
+    .prog-seg {
+        width: 34px;
+    }
+
+    #question-card {
+        padding: 1.25rem 1.25rem;
+    }
+
+    #question-text {
+        font-size: 17px;
+    }
+
+    .option-btn {
+        font-size: 14px;
+    }
+
+    #score-big {
+        font-size: 52px;
+    }
+}
