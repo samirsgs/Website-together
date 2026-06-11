@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz – Test jouw kennis</title>
+    <link rel="stylesheet" href="Quiz.css">
+</head>
+<body>
+
+<div class="quiz-wrap">
+    <p class="quiz-label">Quiz</p>
+    <h1 class="quiz-title">Test jouw kennis</h1>
+
+    <div class="meta-row">
+        <p id="question-counter">Vraag 1 van 6</p>
+        <div id="progress-bar"></div>
+    </div>
+
+    <div id="question-card">
+        <h2 id="question-text"></h2>
+        <div id="options-container"></div>
+        <div id="feedback-wrap" style="display:none;">
+            <p id="feedback-label"></p>
+            <p id="feedback-body"></p>
+        </div>
+    </div>
+
+    <button id="next-btn">Volgende vraag →</button>
+
+    <div id="result-card">
+        <p class="result-label">Quiz</p>
+        <h1 class="quiz-title" style="margin-bottom:1.5rem;">Test jouw kennis</h1>
+        <div class="result-inner">
+            <div id="score-big"></div>
+            <p id="result-headline"></p>
+            <p id="final-score"></p>
+            <button id="retry-btn">↺ Opnieuw spelen</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const questions = [
+        {
+            question: "Een video toont een politicus die zegt ons land te verlaten. Wat doe je eerst?",
+            options: ["Direct delen met vrienden", "Zoeken of andere nieuwsbronnen het bevestigen", "Geloven omdat het er echt uitziet"],
+            correct: 1,
+            label: "Helaas.",
+            explanation: "Controleer altijd of betrouwbare nieuwsbronnen hetzelfde melden. Deepfakes kunnen overtuigend zijn."
+        },
+        {
+            question: "Welke techniek gebruiken AI-modellen om nepnieuws te genereren?",
+            options: ["Ze kopiëren echte artikelen letter voor letter", "Ze trainen op grote hoeveelheden tekst en leren patronen", "Ze raden willekeurig woorden"],
+            correct: 1,
+            label: "Correct!",
+            explanation: "AI-modellen leren statistische patronen uit enorme hoeveelheden tekstdata."
+        },
+        {
+            question: "Wat is de SIFT-methode?",
+            options: ["Een AI-tool om deepfakes te detecteren", "Stop, investigate, find better coverage, trace claims", "Een Europees wetgevend kader voor AI"],
+            correct: 1,
+            label: "Correct!",
+            explanation: "SIFT staat voor Stop, Investigate the source, Find better coverage, Trace claims."
+        },
+        {
+            question: "Hoe verspreidt nepnieuws zich het snelst?",
+            options: ["Via afgedrukte kranten", "Via geautomatiseerde botnetwerken op sociale media", "Via officiële persberichten"],
+            correct: 1,
+            label: "Correct!",
+            explanation: "Bots kunnen content razendsnel en op grote schaal verspreiden op sociale media."
+        },
+        {
+            question: "Wat is een deepfake?",
+            options: ["Een extra diepe duik in nieuws", "Een door AI gegenereerde nep-video of audio", "Een techniek om wachtwoorden te stelen"],
+            correct: 1,
+            label: "Correct!",
+            explanation: "Deepfakes zijn synthetische media waarbij AI iemands gezicht of stem nabootst."
+        },
+        {
+            question: "Een artikel heeft GEEN datum en GEEN naam van een journalist. Wat betekent dit?",
+            options: ["Het is zeker nep", "Het is een waarschuwingssignaal dat nader onderzoek vereist", "Het is normaal voor internetartikelen"],
+            correct: 1,
+            label: "Correct!",
+            explanation: "Ontbrekende auteur en datum zijn rode vlaggen — onderzoek de bron verder."
+        }
+    ];
+
+    const letters = ['A', 'B', 'C'];
+    let score = 0, current = 0, answered = false;
+
+    function buildProgressBar() {
+        const bar = document.getElementById('progress-bar');
+        bar.innerHTML = '';
+        questions.forEach((_, i) => {
+            const seg = document.createElement('div');
+            seg.className = 'prog-seg' + (i < current ? ' done' : i === current ? ' active' : '');
+            bar.appendChild(seg);
+        });
+    }
+
+    function showQuestion() {
+        answered = false;
+        const q = questions[current];
+
+        document.getElementById('question-counter').textContent =
+            'Vraag ' + (current + 1) + ' van ' + questions.length;
+        document.getElementById('question-text').textContent = q.question;
+
+        const fw = document.getElementById('feedback-wrap');
+        fw.style.display = 'none';
+        fw.className = '';
+        document.getElementById('next-btn').style.display = 'none';
+        buildProgressBar();
+
+        const container = document.getElementById('options-container');
+        container.innerHTML = '';
+        q.options.forEach((opt, i) => {
+            const btn = document.createElement('button');
+            btn.className = 'option-btn';
+            btn.innerHTML =
+                '<span class="opt-letter">' + letters[i] + '.</span>' +
+                '<span class="opt-text">' + opt + '</span>';
+            btn.addEventListener('click', () => checkAnswer(i));
+            container.appendChild(btn);
+        });
+    }
+
+    function checkAnswer(chosen) {
+        if (answered) return;
+        answered = true;
+
+        const q = questions[current];
+        const btns = document.querySelectorAll('.option-btn');
+        btns.forEach(b => b.classList.add('disabled'));
+
+        const fw = document.getElementById('feedback-wrap');
+        const label = document.getElementById('feedback-label');
+        const body = document.getElementById('feedback-body');
+
+        if (chosen === q.correct) {
+            score++;
+            btns[chosen].classList.add('correct');
+            fw.className = 'feedback-box feedback-correct';
+            label.textContent = 'Correct!';
+            body.textContent = q.explanation;
+        } else {
+            btns[chosen].classList.add('wrong');
+            btns[q.correct].classList.add('correct');
+            fw.className = 'feedback-box feedback-wrong';
+            label.textContent = q.label || 'Helaas.';
+            body.textContent = q.explanation;
+        }
+
+        fw.style.display = 'block';
+
+        const nextBtn = document.getElementById('next-btn');
+        nextBtn.textContent = current < questions.length - 1 ? 'Volgende vraag →' : 'Bekijk resultaat →';
+        nextBtn.style.display = 'block';
+    }
+
+    document.getElementById('next-btn').addEventListener('click', () => {
+        current++;
+        if (current < questions.length) {
+            showQuestion();
+        } else {
+            showResult();
+        }
+    });
+
+    function showResult() {
+        document.getElementById('question-card').style.display = 'none';
+        document.getElementById('next-btn').style.display = 'none';
+        document.querySelector('.meta-row').style.display = 'none';
+        document.querySelector('.quiz-label').style.display = 'none';
+        document.querySelector('.quiz-title').style.display = 'none';
+
+        const pct = Math.round((score / questions.length) * 100);
+        let headline = pct === 100
+            ? 'Perfect score — uitstekend!'
+            : pct >= 67
+            ? 'Goed gedaan! Er valt nog wat te leren.'
+            : 'Oefen nog wat — mediavaardigheden zijn belangrijk.';
+
+        document.getElementById('score-big').textContent = score + '/' + questions.length;
+        document.getElementById('result-headline').textContent = headline;
+        document.getElementById('final-score').textContent =
+            score + ' van de ' + questions.length + ' vragen goed beantwoord.';
+        document.getElementById('result-card').style.display = 'block';
+    }
+
+    document.getElementById('retry-btn').addEventListener('click', () => {
+        score = 0;
+        current = 0;
+        answered = false;
+        document.getElementById('question-card').style.display = 'block';
+        document.querySelector('.meta-row').style.display = 'flex';
+        document.getElementById('result-card').style.display = 'none';
+        document.querySelector('.quiz-label').style.display = 'block';
+        document.querySelector('.quiz-title').style.display = 'block';
+        showQuestion();
+    });
+
+    showQuestion();
+</script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+body {
+    margin: 0;
+}
+
+
+.woordenlijst {
+    max-width: 960px;
+    margin: 50px auto;
+}
+
+.rood {
+    color: red;
+    letter-spacing: 5px;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.woordenlijst h1 {
+    font-size: 48px;
+    margin: 20px 0 10px;
+}
+
+.woordenlijst p {
+    font-size: 18px;
+    color: #555;
+    margin: 0;
+}
+
+
+.bron {
+    display: grid;
+    grid-template-columns: 60px 1fr 30px;
+    align-items: center;
+    gap: 20px;
+
+    max-width: 960px;
+    margin: 0 auto;
+
+    padding: 28px 25px;
+    border-top: 1px solid #d0d0d0;
+
+    text-decoration: none;
+    color: black;
+}
+
+.bron:last-child {
+    border-bottom: 1px solid #d0d0d0;
+}
+
+.nummer {
+    color: red;
+    font-family: monospace;
+}
+
+.bron-tekst h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.bron-tekst h3 span {
+    font-size: 14px;
+    color: gray;
+    margin-left: 8px;
+    font-weight: 400;
+}
+
+.bron-tekst p {
+    margin: 8px 0 0;
+    color: #555;
+}
+
+.pijl {
+    font-size: 25px;
+}
+
+.bron:hover {
+    background-color: #f5f5f5;
+}

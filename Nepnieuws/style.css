@@ -1,0 +1,74 @@
+.card{
+    padding: 20px;
+    background-color: #fff;
+    border: 2px solid red;
+    margin-bottom: 35px;
+    position: relative;
+
+}
+
+.card-header {
+display: flex;
+align-items: center;
+gap: 10px;
+margin-bottom: 10px;
+}
+
+
+.badge-nep{
+background-color: red;
+color: white;
+font-weight: bold;
+padding: 2px 8px;
+font-size: 12px;
+}
+
+
+.close-btn{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: red;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+
+.waarom titel {
+    color: red;
+    font-size: 13px;
+    letter-spacing: 1px;
+    margin-top: 15px;
+}
+
+.waarom lijst{
+    list-style: none;
+    padding: 0;
+    color: #333;
+    font-size: 14px;
+}
+
+
+.waarom lijst li{
+    margin-bottom: 5px;
+}
+
+
+.badge-betrouwbaar{
+    background-color: green;
+color: white;
+font-weight: bold;
+padding: 2px 8px;
+font-size: 12px;
+}
+
+.cards{
+       padding: 20px;
+    background-color: #fff;
+    border: 2px solid green;
+    margin-bottom: 35px;
+    position: relative;
+
+}
