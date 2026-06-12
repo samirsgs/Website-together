@@ -104,9 +104,12 @@
  	 font-size: 0.9rem;
 	}
 	body {
-  	background: #f0ede8;
-  	font-family: '8bitoperator', sans-serif;
-  	text-align: center;
+    font-family: Georgia, 'Times New Roman', serif;
+    background: #ffffff;
+    color: #111111;
+    min-height: 100vh;
+    margin: 0;      
+    padding: 0;     
 	}
 
 	h2 {
@@ -222,4 +225,205 @@
 .bron-arrow {
   color: #999;
   font-size: 1rem;
+}
+/* HERO */
+.hero {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: #f5f5f5;
+}
+
+.hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #111;
+    margin-bottom: 0.2rem;
+}
+
+.hero-sub {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-style: italic;
+    color: #c0392b;
+    margin-bottom: 1rem;
+}
+
+.hero-text {
+    max-width: 800px;
+    margin: 0 auto 1.5rem;
+    font-size: 1rem;
+    color: #333;
+    line-height: 1.7;
+}
+
+.hero-btn {
+    display: inline-block;
+    background: #c0392b;
+    color: white;
+    padding: 10px 24px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.hero-btn:hover {
+    background: #a93226;
+}
+
+/* DIVIDER */
+.divider {
+    border: none;
+    border-top: 2px solid #222;
+    margin: 0;
+}
+
+/* CARDS GRID */
+.cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    border: 1px solid #ddd;
+}
+
+.info-card {
+    padding: 1.5rem;
+    border-right: 1px solid #ddd;
+    text-align: left;
+}
+
+.info-card:last-child {
+    border-right: none;
+}
+
+.card-icon {
+    width: 32px;
+    height: 32px;
+    margin-bottom: 0.75rem;
+}
+
+.info-card h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #111;
+    margin-bottom: 0.5rem;
+}
+
+.info-card hr {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin-bottom: 0.75rem;
+}
+
+.info-card p {
+    font-size: 0.85rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* DARK SECTION */
+.dark-section {
+    background: #2d2d2d;
+    padding: 1.5rem 2rem;
+}
+
+.dark-section h2 {
+    color: white;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+	text-align: center;
+}
+
+.dark-section p {
+    color: #aaa;
+    font-size: 0.9rem;
+	text-align: center;
+}
+
+/* SOURCE LINK */
+.bron {
+    display: inline-block;
+    margin-top: 0.75rem;
+    font-size: 0.75rem;
+    color: #c0392b;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    font-weight: 600;
+}
+.card{
+    padding: 20px;
+    background-color: #fff;
+    border: 2px solid red;
+    margin-bottom: 35px;
+    position: relative;
+
+}
+
+.card-header {
+display: flex;
+align-items: center;
+gap: 10px;
+margin-bottom: 10px;
+}
+
+
+.badge-nep{
+background-color: red;
+color: white;
+font-weight: bold;
+padding: 2px 8px;
+font-size: 12px;
+}
+
+
+.close-btn{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: red;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+
+.waarom titel {
+    color: red;
+    font-size: 13px;
+    letter-spacing: 1px;
+    margin-top: 15px;
+}
+
+.waarom lijst{
+    list-style: none;
+    padding: 0;
+    color: #333;
+    font-size: 14px;
+}
+
+
+.waarom lijst li{
+    margin-bottom: 5px;
+}
+
+
+.badge-betrouwbaar{
+    background-color: green;
+color: white;
+font-weight: bold;
+padding: 2px 8px;
+font-size: 12px;
+}
+
+.cards{
+    padding: 20px;
+    background-color: #fff;
+    border: 2px solid green;
+    margin-bottom: 35px;
+    position: relative;
+
 }
